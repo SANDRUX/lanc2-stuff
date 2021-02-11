@@ -23,9 +23,9 @@ int main()
         {
             cin >> input;
 
-            if (input > 0)
+            if (input >= 0)
             {
-                array[size] = input;
+                array[size++] = input;
             }
             else if (input == -1)
             {
@@ -36,13 +36,23 @@ int main()
         else if (size == old_size)
         {
             double temp[old_size];
-            copy(temp, temp + old_size, array);
+            //            copy(temp, temp + old_size, array);
+
+            for (int i = 0; i < old_size; i++)
+            {
+                temp[i] = array[i];
+            }
 
             delete[] array;
 
             array = new double[old_size * 2];
 
-            copy(array, array + old_size, temp);
+            //            copy(array, array + old_size, temp);
+
+            for (int i = 0; i < old_size; i++)
+            {
+                array[i] = temp[i];
+            }
 
             old_size *= 2;
 
@@ -50,15 +60,13 @@ int main()
 
             if (input > 0)
             {
-                array[size] = input;
+                array[size++] = input;
             }
             else if (input == -1)
             {
                 break;
             }
         }
-
-        size++;
     }
 
     for (int i = 0; i < size; i++)
